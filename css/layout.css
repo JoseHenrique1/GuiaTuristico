@@ -1,0 +1,13 @@
+.navbar {
+    display: flex;
+}
+.link {
+    text-decoration: none;
+    text-align: center;
+    margin: 1.2em 1em;  
+}
+
+.link :hover{
+    color: #C7923E;
+    text-shadow: 1px 1px 1px black;
+}

@@ -2,3 +2,29 @@
     padding: 0xp;
     margin: 0px;
 }
+
+/*Paleta de cor*/
+
+.primary {
+    color: white;
+}
+
+.secondary {
+    color: #304F47;
+}
+
+.tertiary {
+    color: #C7923E;
+}
+
+.bg-primary {
+    background-color: white;
+}
+
+.bg-secondary {
+    background-color: #304F47;
+}
+
+.bg-tertiary {
+    background-color: #C7923E;
+}
