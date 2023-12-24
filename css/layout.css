@@ -1,6 +1,13 @@
 .navbar {
     display: flex;
 }
+
+@media (max-width: 600px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+    }
+  }
 .link {
     text-decoration: none;
     text-align: center;
@@ -10,4 +17,13 @@
 .link :hover{
     color: #C7923E;
     text-shadow: 1px 1px 1px black;
+}
+
+/* List view locais*/
+
+#ContainerLocais {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
 }
