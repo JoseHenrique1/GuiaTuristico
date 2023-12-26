@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="bg-secondary">
+        <nav class="navbar">
+            <a class="link primary" href="#">
+                <img src="" alt="inicio">
+            </a>
+            <a class="link primary" href="./viewLocais.html">
+                <p>Locais</p>
+            </a>
+            <a class="link primary" href="./createLocais.html">
+                <p>Novo local</p>
+            </a>
+            <a class="link primary" href="#">
+                <p>Sobre</p>
+            </a>
+            <a class="link primary" href="#">
+                <p>Contato</p>
+            </a>
+        </nav>
+    </header>
+    <main>
+        <form id="createLocalForm">
+            <input type="text" placeholder="Título" name="titulo" required/>
+            <input type="text" placeholder="Descrição" name="descricao" required/>
+            <input type="text" placeholder="Url da imagem" name="imagem" required/>
+            <input type="submit" value="Cadastrar">
+        </form>
+
+    </main>
+    <footer>
+        <p>
+            Desenvolvido por José Henrique
+        </p>
+    </footer>
+    <script type="module" src="../js/index.js"></script>
+</body>
+</html>
