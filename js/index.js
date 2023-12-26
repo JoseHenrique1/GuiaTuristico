@@ -1,4 +1,4 @@
-import { handleLoad } from "./locais.js";
+import { handleLoad, handleCreateSubmit } from "./locais.js";
 
 window.addEventListener('load', ()=>{
     let page = document.querySelector('#ListViewLocais');
@@ -7,3 +7,5 @@ window.addEventListener('load', ()=>{
     }
 })
 
+let createLocalForm = document.querySelector("#createLocalForm");
+createLocalForm && createLocalForm.addEventListener('submit', handleCreateSubmit);
