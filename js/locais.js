@@ -1,5 +1,12 @@
 const url = 'http://localhost:3000/locais/';
 
+async function getData() {
+    const data = await fetch(url)
+    .then(data=>data.json())
+    .catch(e=>console.log(e));
+    return data;
+}
+
 //VIEW LOCAIS
 
 function renderCard(locais) {
@@ -18,6 +25,10 @@ function createCard(local) {
                     <h3>${titulo}</h3>
                     <p>${descricao}</p>
                 </div>
+                <div class="card-buttons">
+                    <i class="btn-card bg-primary tertiary bi bi-pencil-square"></i>
+                    <i class="btn-card bg-primary tertiary bi bi-trash"></i>
+                </div>
             </div>
         `
     )
@@ -25,10 +36,8 @@ function createCard(local) {
 export async function handleLoad () {
     let ContainerLocais = document.querySelector("#ContainerLocais");
     ContainerLocais.innerHTML = "";
-    fetch(url)
-    .then(data=>data.json())
-    .then(data=>renderCard(data))
-    .catch(e=>console.log(e))
+    let data = await getData();
+    renderCard(data);
     //criar os cards e add na section list
 }
 
