@@ -12,33 +12,50 @@ async function getData() {
 function renderCard(locais) {
     let ContainerLocais = document.querySelector("#ContainerLocais");
     locais.forEach(local => {
-        ContainerLocais.innerHTML += createCard(local)
+        ContainerLocais.append(createCard(local))
     });
 }
 function createCard(local) {
-    const {titulo, descricao, foto} = local;
-    return (
-        `
-            <div class="card-local">
-                <img src="${foto}" alt="${titulo}">
-                <div class="card-content" >
-                    <h3>${titulo}</h3>
-                    <p>${descricao}</p>
-                </div>
-                <div class="card-buttons">
-                    <i class="btn-card bg-primary tertiary bi bi-pencil-square"></i>
-                    <i class="btn-card bg-primary tertiary bi bi-trash"></i>
-                </div>
-            </div>
-        `
-    )
+    const {id, titulo, descricao, foto} = local;
+    let card = document.createElement('div');
+    card.setAttribute('class', 'card-local');
+
+    let img = document.createElement('img');
+    img.setAttribute('src', foto);
+    img.setAttribute('alt', titulo);
+
+    card.append(img);
+
+    let cardContent = document.createElement('div');
+    cardContent.setAttribute('class', 'card-content');
+
+    let h3 = document.createElement('h3');
+    h3.innerText = titulo;
+    let p = document.createElement('p');
+    p.innerText = descricao;
+
+    cardContent.append(h3,p);
+
+    card.append(cardContent);
+
+    let cardButtons = document.createElement('div');
+    cardButtons.setAttribute('class', 'card-buttons');
+
+    let btnEdit = document.createElement('i');
+    btnEdit.setAttribute('class', 'btn-card bg-primary tertiary bi bi-pencil-square');
+
+    let btnDelete = document.createElement('i');
+    btnDelete.setAttribute('class', 'btn-card bg-primary tertiary bi bi-trash');
+    btnDelete.addEventListener('click', ()=>{deleteLocais(id, card)})
+
+    cardButtons.append(btnEdit, btnDelete);
+
+    card.append(cardButtons);
+    return card;
 }
 export async function handleLoad () {
-    let ContainerLocais = document.querySelector("#ContainerLocais");
-    ContainerLocais.innerHTML = "";
     let data = await getData();
     renderCard(data);
-    //criar os cards e add na section list
 }
 
 
