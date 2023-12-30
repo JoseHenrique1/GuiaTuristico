@@ -76,3 +76,17 @@ export function handleCreateSubmit(e) {
         body: JSON.stringify(local)
     })
 }
+
+
+//DELETE LOCAIS
+
+async function deleteLocais(id, card) {
+    console.log('delete')
+    await fetch(url+ String(id), {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json' // O tipo de conteúdo que estamos enviando
+        },
+    });
+    card.remove()
+}
