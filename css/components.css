@@ -14,8 +14,32 @@
     max-width: 100%;
     width: auto;
     padding: 1em;
+    height: 20vh;
 }
 .card-content > h3 {
     margin-bottom: 0.2em;
 }
 
+.card-buttons {
+    display: flex;
+    justify-content: space-around;
+    max-width: 100%;
+    width: auto;
+    padding-bottom: 0.5em;
+}
+
+.btn-card {
+    display: flex;
+    padding: 0.2em 0.7em;
+    border-radius: 1em;
+    cursor: pointer;
+    font-size: 2em;
+    border: 1px solid #C7923E;
+    transition: 0.5s 0s;
+}
+
+.btn-card:hover {
+    background-color: #304F47;
+    border: 1px solid #304F47;
+    color: white;
+}
