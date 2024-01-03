@@ -46,7 +46,7 @@ function createCard(local) {
 
     let btnDelete = document.createElement('i');
     btnDelete.setAttribute('class', 'btn-card bg-primary tertiary bi bi-trash');
-    btnDelete.addEventListener('click', ()=>{deleteLocais(id, card)})
+    btnDelete.addEventListener('click', ()=>{deleteLocais(id, card, local)})
 
     cardButtons.append(btnEdit, btnDelete);
 
@@ -80,13 +80,23 @@ export function handleCreateSubmit(e) {
 
 //DELETE LOCAIS
 
-async function deleteLocais(id, card) {
-    console.log('delete')
-    await fetch(url+ String(id), {
-        method: "DELETE",
-        headers: {
-            'Content-Type': 'application/json' // O tipo de conteúdo que estamos enviando
-        },
-    });
-    card.remove()
+async function deleteLocais(id, cardHtml, localObj) {
+    Swal.fire({
+        title: `Você deseja mesmo excluir "${localObj.titulo} ?" `,
+        text: "Esta alteração não poderá ser desfeita!",
+        showDenyButton: true,
+        confirmButtonText: "Confirmar",
+        denyButtonText: "Cancelar"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+            await fetch(url+ String(id), {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json' // O tipo de conteúdo que estamos enviando
+                },
+            });
+            card.remove()
+        } 
+      });
+    
 }
