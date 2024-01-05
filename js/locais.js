@@ -16,7 +16,7 @@ function renderCard(locais) {
     });
 }
 function createCard(local) {
-    const {id, titulo, descricao, foto} = local;
+    const {titulo, descricao, foto} = local;
     let card = document.createElement('div');
     card.setAttribute('class', 'card-local');
 
@@ -43,10 +43,11 @@ function createCard(local) {
 
     let btnEdit = document.createElement('i');
     btnEdit.setAttribute('class', 'btn-card bg-primary tertiary bi bi-pencil-square');
+    btnEdit.addEventListener('click', ()=>{handleUpdateLocais(img, h3, p, local)})
 
     let btnDelete = document.createElement('i');
     btnDelete.setAttribute('class', 'btn-card bg-primary tertiary bi bi-trash');
-    btnDelete.addEventListener('click', ()=>{deleteLocais(id, card, local)})
+    btnDelete.addEventListener('click', ()=>{handleDeleteLocais(card, local)})
 
     cardButtons.append(btnEdit, btnDelete);
 
@@ -80,23 +81,71 @@ export function handleCreateSubmit(e) {
 
 //DELETE LOCAIS
 
-async function deleteLocais(id, cardHtml, localObj) {
+async function handleDeleteLocais(cardHtml, localObj) {
     Swal.fire({
-        title: `Você deseja mesmo excluir "${localObj.titulo} ?" `,
+        title: `Você deseja mesmo excluir "${localObj.titulo}" ?`,
         text: "Esta alteração não poderá ser desfeita!",
         showDenyButton: true,
         confirmButtonText: "Confirmar",
         denyButtonText: "Cancelar"
       }).then(async (result) => {
         if (result.isConfirmed) {
-            await fetch(url+ String(id), {
+            await fetch(url+ String(localObj.id), {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json' // O tipo de conteúdo que estamos enviando
                 },
             });
-            card.remove()
+            cardHtml.remove()
         } 
       });
     
+}
+
+//UPDATE LOCAIS
+
+async function handleUpdateLocais(img, h3, p, localObj) {
+    const { value: formValues } = await Swal.fire({
+        title: `Edite este local:`,
+        html: `
+          <input id="titulo" class="swal2-input" value="${localObj.titulo}" >
+          <input id="descricao" class="swal2-input" value="${localObj.descricao}">
+          <input id="foto" class="swal2-input" value="${localObj.foto}">
+        `,
+        focusConfirm: false,
+        preConfirm: () => {
+          return [
+            document.getElementById("titulo").value,
+            document.getElementById("descricao").value,
+            document.getElementById("foto").value
+          ];
+        }
+      });
+    if (formValues) {
+        const [titulo, descricao, foto] = formValues;
+        fetch(url+localObj.id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id:localObj.id,
+                titulo,
+                descricao,
+                foto
+            })
+        })
+        .then(()=>{
+            img.setAttribute('src', foto);
+            h3.innerText = titulo;
+            p.innerText = descricao;
+
+            Swal.fire({
+                icon: "success",
+                title: "Feito!",
+                text: "Atualização realizada com sucesso.",
+            }); 
+        })
+        .catch(e=>console.log(e)) 
+    }
 }
