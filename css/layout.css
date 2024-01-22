@@ -19,6 +19,25 @@
     text-shadow: 1px 1px 1px black;
 }
 
+/* Apresentacao (Index.html) */
+.d-grid {
+    display: grid;
+    grid-template-rows: 1fr 155vh 1fr;
+}
+
+.d-grid-main {
+    margin: 2vh 0vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50vh 50vh 50vh;
+    justify-items: center;
+}
+.d-grid-main > * {
+    width: 90%;
+    max-height: 45vh;
+}
+
 /* List view locais*/
 
 #ContainerLocais {
