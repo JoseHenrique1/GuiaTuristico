@@ -1,5 +1,6 @@
 .navbar {
     display: flex;
+    align-items: center;
 }
 
 @media (max-width: 600px) {
@@ -7,11 +8,17 @@
         display: flex;
         flex-direction: column;
     }
-  }
+}
+
+.navbarImg {
+    width: 50px;
+    height: auto;
+}
+
 .link {
     text-decoration: none;
     text-align: center;
-    margin: 1.2em 1em;  
+    margin: 0em 1em;
 }
 
 .link :hover{
@@ -22,7 +29,8 @@
 /* Apresentacao (Index.html) */
 .d-grid {
     display: grid;
-    grid-template-rows: 1fr 155vh 1fr;
+    grid-template-rows: 3.5em 1fr 3.5em;
+    min-height: 100vh;
 }
 
 .d-grid-main {
@@ -38,6 +46,16 @@
     max-height: 45vh;
 }
 
+@media (max-width: 600px) {
+    .d-grid {
+        grid-template-rows: auto 1fr 3.5em;
+    }
+    .d-grid-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50vh 50vh 50vh 50vh 50vh 50vh;
+    }
+}
+
 /* List view locais*/
 
 #ContainerLocais {
@@ -45,4 +63,67 @@
     flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
+}
+
+
+/* Footer */
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Create Locais*/
+
+.formCreate {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 1em;
+}
+
+.formCreateInput {
+    padding: 5px 10px;
+    border-radius: 0.5em;
+    border: 0.5px lightgray solid;
+    background-color: rgb(245, 245, 245);
+    font-size: 1em;
+    color: rgb(43, 42, 42);
+}
+
+.formCreateInput:focus {
+    outline: none;
+}
+
+.formCreateSubmit {
+    padding: 5px 10px;
+    border-radius: 0.5em;
+    border: none;
+    background-color: #C7923E;
+    font-size: 1em;
+    color: white;
+    width: 8em;
+}
+
+
+@media (max-width: 600px) {
+    .formCreate {
+        width: 100%;
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 1em;
+    }
+}
+
+/* About */
+.redeSocial {
+    text-decoration: none;
+    color: #C7923E;
+    font-weight: bold;
 }
